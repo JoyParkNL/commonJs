@@ -42,62 +42,62 @@ export function timeRemoveS(item){
 
 export function timeConvert(value){//num:0 YYYY-MM-DD  num:1  YYYY-MM-DD hh:mm:ss // timestamp:时间戳 
   let date = new Date(value)
-        let y = date.getFullYear()
-        let MM = date.getMonth() + 1
-        MM = MM < 10 ? ('0' + MM) : MM
-        let d = date.getDate()
-        d = d < 10 ? ('0' + d) : d
-        let h = date.getHours()
-        h = h < 10 ? ('0' + h) : h
-        let m = date.getMinutes()
-        m = m < 10 ? ('0' + m) : m
-        let s = date.getSeconds()
-        s = s < 10 ? ('0' + s) : s
-        return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s
+  let y = date.getFullYear()
+  let MM = date.getMonth() + 1
+  MM = MM < 10 ? ('0' + MM) : MM
+  let d = date.getDate()
+  d = d < 10 ? ('0' + d) : d
+  let h = date.getHours()
+  h = h < 10 ? ('0' + h) : h
+  let m = date.getMinutes()
+  m = m < 10 ? ('0' + m) : m
+  let s = date.getSeconds()
+  s = s < 10 ? ('0' + s) : s
+  return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s
 }
 
 //"2019-05-13 16:01:14.736000000",取2019-05-13
 export function getFormatDate(item){
   if(item){
-      let [data,time]=item.split(" ")
-      return data
+    let [data,time]=item.split(" ")
+    return data
   }else{
-      return
+    return
   }
 }
 
 //形如"2019-06-04T03:40:36.000+0000"取2019-06-04
 export function getFormatDateT(item){
-    if(item){
-        let [data,time]=item.split("T")
-        console.log(data)
-        if(time){
-          return data+' '+time.split(".")[0]
-        }else{
-          return data
-        }
+  if(item){
+    let [data,time]=item.split("T")
+    console.log(data)
+    if(time){
+      return data+' '+time.split(".")[0]
     }else{
-        return
+      return data
     }
+  } else {
+    return
+  }
 }
 
 
 // 递归深拷贝
 export function clone(object){
   let object2
-    if(! (object instanceof Object) ){
-        return object
-    }else if(object instanceof Array){
-        object2 = []
-    }else if(object instanceof Function){
-        object2 = eval(object.toString())
-    }else if(object instanceof Object){
-        object2 = {}
-    }
-    for(let key in object){
-        object2[key] = clone(object[key])
-    }
-    return object2
+  if(! (object instanceof Object) ){
+      return object
+  }else if(object instanceof Array){
+      object2 = []
+  }else if(object instanceof Function){
+      object2 = eval(object.toString())
+  }else if(object instanceof Object){
+      object2 = {}
+  }
+  for(let key in object){
+      object2[key] = clone(object[key])
+  }
+  return object2
 }
 
 // 获取当前时间 格式为"年"-"月"-"日"
@@ -239,18 +239,18 @@ export function downloadFile(data, fileName) {
 // 判断JSON字符串
 export function isJSON(str) {
   if (typeof str == 'string') {
-      try {
-          var obj=JSON.parse(str);
-          if(typeof obj == 'object' && obj ){
-              return true;
-          }else{
-              return false;
-          }
-
-      } catch(e) {
-          console.log('错误'+str+'!!!'+e);
+    try {
+      var obj=JSON.parse(str);
+      if(typeof obj == 'object' && obj ){
+          return true;
+      } else {
           return false;
       }
+
+    } catch(e) {
+      console.log('错误'+str+'!!!'+e);
+      return false;
+    }
   }
   console.log('It is not a string!')
 }
